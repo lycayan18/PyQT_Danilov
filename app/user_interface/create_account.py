@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication
-from designer_files.create_account_ui import UiForm
-from data_base.request import add_account, UserInDataBase
+from app.designer_files.create_account_ui import UiForm
+from app.data_base.request import add_account, UserInDataBase
 
 
 class CreateAccount(QWidget, UiForm):

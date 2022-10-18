@@ -1,9 +1,9 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication
-from data_base.request import is_acc_exist
-from designer_files.login_ui import UiForm
-from user_interface.main_window import MainWindow
-from user_interface.create_account import CreateAccount
+from app.data_base.request import is_acc_exist
+from app.designer_files.login_ui import UiForm
+from app.user_interface.main_window import MainWindow
+from app.user_interface.create_account import CreateAccount
 
 
 class Login(QWidget, UiForm):
@@ -34,7 +34,7 @@ class Login(QWidget, UiForm):
         if login and password:
             if is_acc_exist(login, password)[0]:
                 self.close()
-                self.widget = MainWindow(is_acc_exist(login, password)[1])
+                self.widget = MainWindow(user_hash=is_acc_exist(login, password)[1], user_password=password)
                 self.widget.show()
             else:
                 self.label_3.show()

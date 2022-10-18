@@ -1,15 +1,16 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QGridLayout, QInputDialog, QErrorMessage
 from PyQt5.QtCore import Qt
-from designer_files.main_window_ui import UiForm
-from data_base.request import create_storage, get_data
-from user_interface.input_data import InputData
+from app.designer_files.main_window_ui import UiForm
+from app.data_base.request import create_storage, get_data
+from app.user_interface.input_data import InputData
 
 
 class MainWindow(QWidget, UiForm):
-    def __init__(self, user_hash):
+    def __init__(self, user_hash: str, user_password: str):
         super().__init__()
         self.user_hash = user_hash
+        self.user_password = user_password
         self.initUI()
 
     def initUI(self):
@@ -67,7 +68,8 @@ class MainWindow(QWidget, UiForm):
     def open_input_window(self) -> None:
         """Открытие следующего окна"""
         self.hide()
-        self.widget = InputData(self, self.sender().text(), self.user_hash)
+        self.widget = InputData(back_widget=self, storage_name=self.sender().text(), user_hash=self.user_hash,
+                                user_password=self.user_password)
         self.widget.show()
 
     def displaying_buttons(self) -> None:

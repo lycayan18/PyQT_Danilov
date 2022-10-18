@@ -1,15 +1,17 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication
-from designer_files.input_data_ui import UiForm
-from data_base.request import set_data, get_data, delete_storage
+from app.designer_files.input_data_ui import UiForm
+from app.data_base.request import set_data, get_data, delete_storage
+from app.encryption.string_encryption import encode, decode
 
 
 class InputData(QWidget, UiForm):
-    def __init__(self, back_widget, storage_name: str, user_hash: str):
+    def __init__(self, back_widget, storage_name: str, user_hash: str, user_password: str):
         super().__init__()
         self.back_widget = back_widget
         self.storage_name = storage_name
         self.user_hash = user_hash
+        self.user_password = user_password
         self.initUI()
 
     def initUI(self):
@@ -26,12 +28,14 @@ class InputData(QWidget, UiForm):
 
     def save_data(self) -> None:
         data = self.plainTextEdit.toPlainText()
-        set_data(self.storage_name, self.user_hash, data)
-        # TODO: сделать шифрование
+        encode_data = encode(text=data, key=self.user_password)
+        set_data(self.storage_name, self.user_hash, encode_data)
 
     def open_data(self) -> None:
         data = get_data(self.user_hash, self.storage_name)
-        self.plainTextEdit.setPlainText(data[0])
+        if data[0]:
+            decode_data = decode(text=data[0], key=self.user_password)
+            self.plainTextEdit.setPlainText(decode_data)
 
     def delete(self):
         delete_storage(self.storage_name, self.user_hash)
