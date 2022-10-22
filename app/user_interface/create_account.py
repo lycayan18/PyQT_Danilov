@@ -10,7 +10,7 @@ class CreateAccount(QWidget, UiForm):
         self.back_widget = back_widget
         self.initUI()
 
-    def initUI(self):
+    def initUI(self) -> None:
         self.setupUi(self)
         self.label_3.hide()
         self.label_4.hide()
@@ -19,11 +19,13 @@ class CreateAccount(QWidget, UiForm):
         self.connectButton(self.back, self.return_to_previous_window)
         self.connectButton(self.create_account, self.create_acc)
 
-    def return_to_previous_window(self):
+    def return_to_previous_window(self) -> None:
+        """Возвращение к предыдущему окну"""
         self.close()
         self.back_widget.show()
 
-    def create_acc(self):
+    def create_acc(self) -> None:
+        """Создание аккаунта"""
         self.label_4.hide()
         self.label_6.hide()
         self.label_7.hide()

@@ -1,5 +1,5 @@
 import sqlite3
-from encryption.hash_login import hash_login
+from app.encryption.hash_login import hash_login
 
 
 class UserInDataBase(Exception):
@@ -8,9 +8,10 @@ class UserInDataBase(Exception):
 
 def is_acc_exist(login: str, password: str) -> tuple:
     """Проверка на присутствие таблицы в базе"""
+
     login_hash = hash_login(login, password)
 
-    sqlite_connection = sqlite3.connect('security_data2.db')
+    sqlite_connection = sqlite3.connect('security_data.db')
     cursor = sqlite_connection.cursor()
     is_exist = f"""SELECT count(*) FROM sqlite_master WHERE type='table' AND name='{login_hash}';"""
     cursor.execute(is_exist)
@@ -29,10 +30,11 @@ def is_acc_exist(login: str, password: str) -> tuple:
 
 def add_account(login: str, password: str) -> None:
     """Добавление аккаунта в базу"""
+
     if is_acc_exist(login, password)[0]:
         raise UserInDataBase()
 
-    sqlite_connection = sqlite3.connect('security_data2.db')
+    sqlite_connection = sqlite3.connect('security_data.db')
     cursor = sqlite_connection.cursor()
 
     login_hash = hash_login(login, password)
@@ -51,7 +53,7 @@ def add_account(login: str, password: str) -> None:
 def get_data(user_hash: str, storage_name: str, need_all=False) -> list:
     """Получение данных из таблицы"""
 
-    sqlite_connection = sqlite3.connect('security_data2.db')
+    sqlite_connection = sqlite3.connect('security_data.db')
     cursor = sqlite_connection.cursor()
     if not need_all:
         query = f"""SELECT data FROM '{user_hash}'
@@ -72,31 +74,50 @@ def get_data(user_hash: str, storage_name: str, need_all=False) -> list:
 
 def set_data(storage_name: str, user_hash: str, data: str) -> None:
     """Добавление данных в хранилище"""
-    sqlite_connection = sqlite3.connect('security_data2.db')
+
+    sqlite_connection = sqlite3.connect('security_data.db')
     cursor = sqlite_connection.cursor()
     query = f"""UPDATE '{user_hash}'
                 SET data = '{data}'
                 WHERE name = '{storage_name}';"""
     cursor.execute(query)
     sqlite_connection.commit()
+    cursor.close()
+    sqlite_connection.close()
 
 
 def create_storage(storage_name: str, user_hash: str, data: str) -> None:
     """Создание хранилища"""
-    sqlite_connection = sqlite3.connect('security_data2.db')
+
+    sqlite_connection = sqlite3.connect('security_data.db')
     cursor = sqlite_connection.cursor()
     query = f"""INSERT INTO '{user_hash}' (name, data) VALUES ('{storage_name}', '{data}');"""
     cursor.execute(query)
     sqlite_connection.commit()
+    cursor.close()
+    sqlite_connection.close()
 
 
-def delete_storage(storage_name: str, user_hash: str):
+def delete_storage(storage_name: str, user_hash: str) -> None:
     """Удаление хранилища"""
-    sqlite_connection = sqlite3.connect('security_data2.db')
+
+    sqlite_connection = sqlite3.connect('security_data.db')
     cursor = sqlite_connection.cursor()
     query = f"""DELETE FROM '{user_hash}'
                 WHERE name = '{storage_name}';"""
     cursor.execute(query)
     sqlite_connection.commit()
+    cursor.close()
+    sqlite_connection.close()
 
-# print(get_data('282b43d6979667681a9f43c3792e5f8d6abb92658f916d5bb629229e3be6970e2ad8832120c5bcb5f9cf5434527e879d4f638af87901053306824cd1427b47c0', '1', True))
+
+def rename_table(old_name: str, new_name: str) -> None:
+    """Преименование таблицы"""
+    sqlite_connection = sqlite3.connect('security_data.db')
+    cursor = sqlite_connection.cursor()
+    query = f"""ALTER TABLE '{old_name}' RENAME TO '{new_name}'"""
+    cursor.execute(query)
+    sqlite_connection.commit()
+    cursor.close()
+    sqlite_connection.close()
+

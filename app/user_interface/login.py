@@ -19,7 +19,8 @@ class Login(QWidget, UiForm):
         self.connectButton(self.enter, self.sign_in)
         self.connectButton(self.create_account, self.create_acc)
 
-    def sign_in(self):
+    def sign_in(self) -> None:
+        """Вход в аккаунт"""
         self.label_3.hide()
         self.label_4.hide()
         self.label_6.hide()
@@ -41,7 +42,7 @@ class Login(QWidget, UiForm):
                 self.login.clear()
                 self.password.clear()
 
-    def create_acc(self):
+    def create_acc(self) -> None:
         self.hide()
         self.widget = CreateAccount(self)
         self.widget.show()

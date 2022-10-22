@@ -14,7 +14,7 @@ class InputData(QWidget, UiForm):
         self.user_password = user_password
         self.initUI()
 
-    def initUI(self):
+    def initUI(self) -> None:
         self.setupUi(self)
         self.connectButton(self.back, self.return_to_previous_window)
         self.connectButton(self.save, self.save_data)
@@ -22,22 +22,26 @@ class InputData(QWidget, UiForm):
         self.open_data()
 
     def return_to_previous_window(self) -> None:
+        """Возвращение к предыдущему окну"""
         self.close()
         self.back_widget.show()
         self.back_widget.displaying_buttons()
 
     def save_data(self) -> None:
+        """Сохранение данных в БД"""
         data = self.plainTextEdit.toPlainText()
         encode_data = encode(text=data, key=self.user_password)
         set_data(self.storage_name, self.user_hash, encode_data)
 
     def open_data(self) -> None:
+        """Открытие данных из БД"""
         data = get_data(self.user_hash, self.storage_name)
         if data[0]:
             decode_data = decode(text=data[0], key=self.user_password)
             self.plainTextEdit.setPlainText(decode_data)
 
-    def delete(self):
+    def delete(self) -> None:
+        """Удаление хранилища"""
         delete_storage(self.storage_name, self.user_hash)
         self.return_to_previous_window()
 

@@ -4,6 +4,7 @@ from PyQt5.QtCore import Qt
 from app.designer_files.main_window_ui import UiForm
 from app.data_base.request import create_storage, get_data
 from app.user_interface.input_data import InputData
+from app.user_interface.new_password import NewPassword
 
 
 class MainWindow(QWidget, UiForm):
@@ -22,6 +23,7 @@ class MainWindow(QWidget, UiForm):
 
         self.storage.setFixedSize(721, 51)
         self.connectButton(self.add_category, self.new_storage)
+        self.connectButton(self.change_password, self.open_password_window)
 
         self.displaying_buttons()
 
@@ -66,10 +68,16 @@ class MainWindow(QWidget, UiForm):
                 error.showMessage('Хранилище с таким названием уже существует, пожалуйста выберете другое')
 
     def open_input_window(self) -> None:
-        """Открытие следующего окна"""
+        """Открытие окна ввода"""
         self.hide()
         self.widget = InputData(back_widget=self, storage_name=self.sender().text(), user_hash=self.user_hash,
                                 user_password=self.user_password)
+        self.widget.show()
+
+    def open_password_window(self):
+        """Открытие окна для изменения пароля"""
+        self.hide()
+        self.widget = NewPassword(self)
         self.widget.show()
 
     def displaying_buttons(self) -> None:
