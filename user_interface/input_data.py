@@ -1,8 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication
-from app.designer_files.input_data_ui import UiForm
-from app.data_base.request import set_data, get_data, delete_storage
-from app.encryption.string_encryption import encode, decode
+from designer_files.input_data_ui import UiForm
+from data_base.request import set_data, get_data, delete_storage
+from encryption.string_encryption import encode, decode
 
 
 class InputData(QWidget, UiForm):

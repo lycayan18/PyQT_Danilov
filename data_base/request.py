@@ -1,5 +1,5 @@
 import sqlite3
-from app.encryption.hash_login import hash_login
+from encryption.hash_login import hash_login
 
 
 class UserInDataBase(Exception):

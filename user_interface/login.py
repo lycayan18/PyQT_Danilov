@@ -1,9 +1,9 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication
-from app.data_base.request import is_acc_exist
-from app.designer_files.login_ui import UiForm
-from app.user_interface.main_window import MainWindow
-from app.user_interface.create_account import CreateAccount
+from data_base.request import is_acc_exist
+from designer_files.login_ui import UiForm
+from user_interface.main_window import MainWindow
+from user_interface.create_account import CreateAccount
 
 
 class Login(QWidget, UiForm):

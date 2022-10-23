@@ -1,9 +1,9 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication
-from app.designer_files.new_password_ui import UiForm
-from app.data_base.request import is_acc_exist, get_data, set_data, rename_table
-from app.encryption.string_encryption import encode, decode
-from app.encryption.hash_login import hash_login
+from designer_files.new_password_ui import UiForm
+from data_base.request import is_acc_exist, get_data, set_data, rename_table
+from encryption.string_encryption import encode, decode
+from encryption.hash_login import hash_login
 
 
 class NewPassword(QWidget, UiForm):

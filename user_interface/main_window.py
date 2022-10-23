@@ -1,10 +1,10 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QGridLayout, QInputDialog, QErrorMessage
 from PyQt5.QtCore import Qt
-from app.designer_files.main_window_ui import UiForm
-from app.data_base.request import create_storage, get_data
-from app.user_interface.input_data import InputData
-from app.user_interface.new_password import NewPassword
+from designer_files.main_window_ui import UiForm
+from data_base.request import create_storage, get_data
+from user_interface.input_data import InputData
+from user_interface.new_password import NewPassword
 
 
 class MainWindow(QWidget, UiForm):
