@@ -1,5 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget
 from designer_files.input_data_ui import UiForm
 from data_base.request import set_data, get_data, delete_storage
 from encryption.string_encryption import encode, decode
@@ -48,10 +47,3 @@ class InputData(QWidget, UiForm):
 
     def connectButton(self, button, handler):
         button.clicked.connect(lambda: handler())
-
-
-if __name__ == "__main__":
-    app = QApplication([])
-    widget = InputData()
-    widget.show()
-    sys.exit(app.exec())

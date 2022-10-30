@@ -1,5 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QGridLayout, QInputDialog, QErrorMessage
+from PyQt5.QtWidgets import QWidget, QPushButton, QGridLayout, QInputDialog, QErrorMessage
 from PyQt5.QtCore import Qt
 from designer_files.main_window_ui import UiForm
 from data_base.request import create_storage, get_data
@@ -54,9 +53,13 @@ class MainWindow(QWidget, UiForm):
                                         background : red;
                                         }""")
 
-        dialog = QInputDialog()
-        name, ok_pressed = dialog.getText(self, "Название хранилища",
-                                          "Введите название хранилища")
+        inputDialog = QInputDialog(None)
+        inputDialog.setInputMode(QInputDialog.TextInput)
+        inputDialog.setWindowTitle('Название хранилища')
+        inputDialog.setLabelText('Введите название хранилища')
+        # inputDialog.setStyleSheet("""background: rgb(100, 100, 100);""")
+        ok_pressed = inputDialog.exec_()
+        name = inputDialog.textValue()
 
         if ok_pressed and name:
             if name not in get_data(self.user_hash, '', True):
@@ -98,10 +101,3 @@ class MainWindow(QWidget, UiForm):
 
     def connectButton(self, button, handler):
         button.clicked.connect(lambda: handler())
-
-
-if __name__ == "__main__":
-    app = QApplication([])
-    widget = MainWindow('')
-    widget.show()
-    sys.exit(app.exec())

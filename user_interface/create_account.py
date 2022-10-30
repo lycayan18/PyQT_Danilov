@@ -1,5 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget
 from designer_files.create_account_ui import UiForm
 from data_base.request import add_account, UserInDataBase
 
@@ -48,9 +47,3 @@ class CreateAccount(QWidget, UiForm):
     def connectButton(self, button, handler):
         button.clicked.connect(lambda: handler())
 
-
-if __name__ == "__main__":
-    app = QApplication([])
-    widget = CreateAccount()
-    widget.show()
-    sys.exit(app.exec())

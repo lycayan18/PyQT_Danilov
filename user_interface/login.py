@@ -1,5 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget
 from data_base.request import is_acc_exist
 from designer_files.login_ui import UiForm
 from user_interface.main_window import MainWindow
@@ -51,9 +50,3 @@ class Login(QWidget, UiForm):
     def connectButton(self, button, handler):
         button.clicked.connect(lambda: handler())
 
-
-if __name__ == "__main__":
-    app = QApplication([])
-    widget = Login()
-    widget.show()
-    sys.exit(app.exec())

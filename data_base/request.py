@@ -1,12 +1,8 @@
 import sqlite3
 from encryption.hash_login import hash_login
-import os
 
 
 class UserInDataBase(Exception):
-    pass
-
-class InvalidData(Exception):
     pass
 
 
@@ -119,5 +115,3 @@ def rename_table(old_name: str, new_name: str) -> None:
     query = f"""ALTER TABLE '{old_name}' RENAME TO '{new_name}'"""
     connect_to_db(query=query, mode='w')
 
-
-connect_to_db('', '')

@@ -1,5 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget
 from designer_files.new_password_ui import UiForm
 from data_base.request import is_acc_exist, get_data, set_data, rename_table
 from encryption.string_encryption import encode, decode
@@ -69,10 +68,3 @@ class NewPassword(QWidget, UiForm):
 
     def connectButton(self, button, handler) -> None:
         button.clicked.connect(lambda: handler())
-
-
-if __name__ == "__main__":
-    app = QApplication([])
-    widget = NewPassword()
-    widget.show()
-    sys.exit(app.exec())

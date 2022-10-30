@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QApplication
 import sys
 from user_interface.login import Login
-import logging
 
 
 def main():
