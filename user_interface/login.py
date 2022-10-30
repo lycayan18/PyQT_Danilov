@@ -13,6 +13,7 @@ class Login(QWidget, UiForm):
 
     def initUI(self):
         self.setupUi(self)
+        self.setFixedSize(850, 550)
         self.label_3.hide()
         self.label_4.hide()
         self.label_6.hide()

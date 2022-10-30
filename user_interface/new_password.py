@@ -14,6 +14,7 @@ class NewPassword(QWidget, UiForm):
 
     def initUI(self):
         self.setupUi(self)
+        self.setFixedSize(850, 550)
         self.login_or_pass.hide()
         self.new_pass_label.hide()
         self.password_label.hide()
@@ -43,6 +44,8 @@ class NewPassword(QWidget, UiForm):
             if is_exist:
                 if not new_password:
                     self.new_pass_label.show()
+                if new_password == password:
+                    self.pass_changed.show()
                 else:
                     for storage in get_data(user_hash, '', True):
                         data = get_data(user_hash=user_hash, storage_name=storage)

@@ -16,6 +16,7 @@ class InputData(QWidget, UiForm):
 
     def initUI(self) -> None:
         self.setupUi(self)
+        self.setFixedSize(850, 550)
         self.connectButton(self.back, self.return_to_previous_window)
         self.connectButton(self.save, self.save_data)
         self.connectButton(self.delete_2, self.delete)

@@ -16,6 +16,7 @@ class MainWindow(QWidget, UiForm):
 
     def initUI(self):
         self.setupUi(self)
+        self.setFixedSize(850, 550)
 
         self.storage.hide()
         self.scroll_layout = QGridLayout(self.scrollAreaWidgetContents)
