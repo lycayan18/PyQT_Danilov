@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QPushButton
 from designer_files.new_password_ui import UiForm
 from data_base.request import is_acc_exist, get_data, set_data, rename_table
 from encryption.string_encryption import encode, decode
@@ -11,7 +11,7 @@ class NewPassword(QWidget, UiForm):
         self.back_widget = back_widget
         self.initUI()
 
-    def initUI(self):
+    def initUI(self) -> None:
         self.setupUi(self)
         self.setFixedSize(850, 550)
         self.login_or_pass.hide()
@@ -66,5 +66,5 @@ class NewPassword(QWidget, UiForm):
         self.close()
         self.back_widget.show()
 
-    def connectButton(self, button, handler) -> None:
+    def connectButton(self, button: QPushButton, handler) -> None:
         button.clicked.connect(lambda: handler())

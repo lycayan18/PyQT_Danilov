@@ -13,7 +13,7 @@ class MainWindow(QWidget, UiForm):
         self.user_password = user_password
         self.initUI()
 
-    def initUI(self):
+    def initUI(self) -> None:
         self.setupUi(self)
         self.setFixedSize(850, 550)
 
@@ -61,7 +61,6 @@ class MainWindow(QWidget, UiForm):
         inputDialog.setInputMode(QInputDialog.TextInput)
         inputDialog.setWindowTitle('Название хранилища')
         inputDialog.setLabelText('Введите название хранилища')
-        # inputDialog.setStyleSheet("""background: rgb(100, 100, 100);""")
         ok_pressed = inputDialog.exec_()
         name = inputDialog.textValue()
 
@@ -79,7 +78,7 @@ class MainWindow(QWidget, UiForm):
                                 user_password=self.user_password)
         self.widget.show()
 
-    def open_password_window(self):
+    def open_password_window(self) -> None:
         """Открытие окна для изменения пароля"""
         self.hide()
         self.widget = NewPassword(self)
@@ -100,5 +99,5 @@ class MainWindow(QWidget, UiForm):
             self.connectButton(btn, self.open_input_window)
             self.scroll_layout.addWidget(btn, count, 0, alignment=Qt.AlignTop)
 
-    def connectButton(self, button, handler):
+    def connectButton(self, button: QPushButton, handler):
         button.clicked.connect(lambda: handler())

@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QPushButton
 from data_base.request import is_acc_exist
 from designer_files.login_ui import UiForm
 from user_interface.main_window import MainWindow
@@ -10,7 +10,7 @@ class Login(QWidget, UiForm):
         super().__init__()
         self.initUI()
 
-    def initUI(self):
+    def initUI(self) -> None:
         self.setupUi(self)
         self.setFixedSize(850, 550)
         self.label_3.hide()
@@ -47,6 +47,6 @@ class Login(QWidget, UiForm):
         self.widget = CreateAccount(self)
         self.widget.show()
 
-    def connectButton(self, button, handler):
+    def connectButton(self, button: QPushButton, handler) -> None:
         button.clicked.connect(lambda: handler())
 

@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QPushButton
 from designer_files.input_data_ui import UiForm
 from data_base.request import set_data, get_data, delete_storage
 from encryption.string_encryption import encode, decode
@@ -45,5 +45,5 @@ class InputData(QWidget, UiForm):
         delete_storage(self.storage_name, self.user_hash)
         self.return_to_previous_window()
 
-    def connectButton(self, button, handler):
+    def connectButton(self, button: QPushButton, handler) -> None:
         button.clicked.connect(lambda: handler())

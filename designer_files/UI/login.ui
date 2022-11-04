@@ -189,6 +189,23 @@ background-color: rgb(79, 79, 79)</string>
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Введите пароль!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>10</y>
+     <width>182</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 28px;
+color: rgb(100, 11, 255)</string>
+   </property>
+   <property name="text">
+    <string>Secret Storage</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

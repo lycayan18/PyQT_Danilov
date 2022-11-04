@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QPushButton
 from designer_files.create_account_ui import UiForm
 from data_base.request import add_account, UserInDataBase
 
@@ -44,6 +44,5 @@ class CreateAccount(QWidget, UiForm):
             except UserInDataBase:
                 self.label_7.show()
 
-    def connectButton(self, button, handler):
+    def connectButton(self, button: QPushButton, handler) -> None:
         button.clicked.connect(lambda: handler())
-

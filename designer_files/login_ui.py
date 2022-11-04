@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'designer_files\UI\login.ui'
+# Form implementation generated from reading ui file 'designer_files/UI/login.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -73,6 +73,11 @@ class UiForm(object):
         self.label_4.setGeometry(QtCore.QRect(380, 340, 163, 25))
         self.label_4.setStyleSheet("color: rgb(234, 0, 3)")
         self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(Form)
+        self.label_5.setGeometry(QtCore.QRect(640, 10, 182, 34))
+        self.label_5.setStyleSheet("font-size: 28px;\n"
+                                   "color: rgb(100, 11, 255)")
+        self.label_5.setObjectName("label_5")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -96,3 +101,4 @@ class UiForm(object):
                                         "<html><head/><body><p><span style=\" font-size:16pt;\">Введите логин!</span></p></body></html>"))
         self.label_4.setText(_translate("Form",
                                         "<html><head/><body><p><span style=\" font-size:16pt;\">Введите пароль!</span></p></body></html>"))
+        self.label_5.setText(_translate("Form", "Secret Storage"))
