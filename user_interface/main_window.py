@@ -25,6 +25,10 @@ class MainWindow(QWidget, UiForm):
         self.connectButton(self.add_category, self.new_storage)
         self.connectButton(self.change_password, self.open_password_window)
 
+        self.error = QErrorMessage(self)
+        self.error.setStyleSheet("""color: white;
+                                """)
+
         self.displaying_buttons()
 
     def create_button(self, name: str) -> QPushButton:
@@ -66,10 +70,7 @@ class MainWindow(QWidget, UiForm):
                 create_storage(storage_name=name, user_hash=self.user_hash, data='')
                 self.displaying_buttons()
             else:
-                error = QErrorMessage(self)
-                error.setStyleSheet("""color: white;
-                                        """)
-                error.showMessage('Хранилище с таким названием уже существует, пожалуйста выберете другое')
+                self.error.showMessage('Хранилище с таким названием уже существует, пожалуйста выберете другое')
 
     def open_input_window(self) -> None:
         """Открытие окна ввода"""

@@ -102,7 +102,7 @@ class UiForm(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Secret Storage"))
         self.back.setText(_translate("Form", "<- Назад"))
         self.pass_changed.setText(_translate("Form",
                                              "<html><head/><body><p><span style=\" font-size:20pt;\">Пароль изменен</span></p></body></html>"))

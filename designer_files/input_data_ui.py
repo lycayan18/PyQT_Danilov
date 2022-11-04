@@ -61,7 +61,7 @@ class UiForm(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Secret Storage"))
         self.label.setText(_translate("Form",
                                       "<html><head/><body><p><span style=\" font-size:26pt;\">Название</span></p></body></html>"))
         self.save.setText(_translate("Form", "Сохранить"))
